@@ -1,0 +1,46 @@
+# Core stack
+[submodule "blvm"]
+	path = blvm
+	url = https://github.com/BTCDecoded/blvm.git
+[submodule "blvm-primitives"]
+	path = blvm-primitives
+	url = https://github.com/BTCDecoded/blvm-primitives.git
+[submodule "blvm-consensus"]
+	path = blvm-consensus
+	url = https://github.com/BTCDecoded/blvm-consensus.git
+[submodule "blvm-protocol"]
+	path = blvm-protocol
+	url = https://github.com/BTCDecoded/blvm-protocol.git
+[submodule "blvm-node"]
+	path = blvm-node
+	url = https://github.com/BTCDecoded/blvm-node.git
+[submodule "blvm-sdk"]
+	path = blvm-sdk
+	url = https://github.com/BTCDecoded/blvm-sdk.git
+
+# Crypto / primitives
+[submodule "blvm-secp256k1"]
+	path = blvm-secp256k1
+	url = https://github.com/BTCDecoded/blvm-secp256k1.git
+[submodule "blvm-muhash"]
+	path = blvm-muhash
+	url = https://github.com/BTCDecoded/blvm-muhash.git
+[submodule "blvm-miniscript"]
+	path = blvm-miniscript
+	url = https://github.com/BTCDecoded/blvm-miniscript.git
+
+# Verification & spec
+[submodule "blvm-spec-lock"]
+	path = blvm-spec-lock
+	url = https://github.com/BTCDecoded/blvm-spec-lock.git
+[submodule "blvm-spec"]
+	path = blvm-spec
+	url = https://github.com/BTCDecoded/blvm-spec.git
+
+# Dev tools
+[submodule "blvm-bench"]
+	path = blvm-bench
+	url = https://github.com/BTCDecoded/blvm-bench.git
+[submodule "blvm-commons"]
+	path = blvm-commons
+	url = https://github.com/BTCDecoded/blvm-commons.git

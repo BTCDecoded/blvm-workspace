@@ -1,0 +1,49 @@
+name: validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  manifest-and-scripts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: 1.88.0
+          components: rustfmt, clippy
+
+      - name: Validate workspace manifest
+        run: |
+          test -f Cargo.toml
+          grep -q '^\[workspace\]' Cargo.toml
+          grep -q 'blvm-\*' Cargo.toml
+
+      - name: Validate .gitmodules paths
+        run: |
+          while IFS= read -r path; do
+            [[ -n "$path" ]] || continue
+            grep -q "path = $path" .gitmodules
+          done < <(awk '/path = / { gsub(/"/, ""); print $3 }' .gitmodules | sort -u)
+
+      - name: Install shellcheck
+        uses: awalsh128/cache-apt-pkgs-action@latest
+        with:
+          packages: shellcheck
+          version: 1.0
+
+      - name: Shellcheck scripts
+        run: shellcheck scripts/*.sh scripts/lib/*.sh
+
+      - name: Help and doctor (no submodules)
+        run: |
+          bash scripts/help.sh
+          bash scripts/doctor.sh
+
+      - name: Status (empty tree)
+        run: bash scripts/status.sh

@@ -1,0 +1,47 @@
+# blvm-workspace — optional development checkout for cross-crate BLVM work.
+#
+# Clone this repo, initialize the submodules you need, then build from the member
+# crate directory (recommended). Initialized submodules become workspace members;
+# Cargo uses local paths for deps on those members. Uninitialized submodules are
+# not members — deps resolve from crates.io via each crate's version pins.
+#
+# See README.md and CONTRIBUTING.md.
+
+[workspace]
+resolver = "2"
+members = [
+    # `blvm` (CLI binary) is intentionally omitted: it pulls a different
+    # blvm-protocol feature set than blvm-node and breaks workspace unification.
+    # Build it standalone: cd blvm && cargo build
+    "blvm-*",
+]
+exclude = [
+    # Fuzz harnesses stay separate workspaces in their home repos.
+    "blvm-*/fuzz",
+    "blvm-sdk/fuzz",
+    # Not a Rust crate — Orange Paper markdown only.
+    "blvm-spec",
+]
+
+[workspace.package]
+edition = "2024"
+license = "MIT"
+repository = "https://github.com/BTCDecoded/blvm-workspace"
+
+# Shared release profile for workspace builds (member [profile.release] tables are ignored).
+[profile.release]
+opt-level = 3
+lto = false
+codegen-units = 256
+strip = true
+panic = "abort"
+
+[profile.release-fast]
+inherits = "release"
+opt-level = 2
+lto = false
+
+# Security/git patches from blvm-node (must live at the workspace root).
+[patch.crates-io]
+quinn-proto = { git = "https://github.com/quinn-rs/quinn", tag = "quinn-proto-0.11.14" }
+time = { git = "https://github.com/time-rs/time", tag = "v0.3.47" }

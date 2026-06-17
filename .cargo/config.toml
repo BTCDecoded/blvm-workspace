@@ -1,0 +1,16 @@
+# Workspace-wide Cargo settings (merged when building from any member directory).
+# Paths are relative to this repository root (parent of .cargo/).
+
+[env]
+# Orange Paper paths for blvm-spec-lock verify / #[spec_locked] (when blvm-spec submodule is present).
+SPEC_LOCK_SPEC_PATH = "blvm-spec/PROTOCOL.md,blvm-spec/ARCHITECTURE.md,blvm-spec/VERIFIED_FORMULAS.md"
+
+[build]
+# Prefer workspace target/ at repo root (default when using a virtual workspace).
+
+[alias]
+# Shortcuts; prefer `make check-node` or `./scripts/cargo-in.sh` for cross-crate work.
+b = "build"
+c = "check"
+t = "test"
+r = "run"
