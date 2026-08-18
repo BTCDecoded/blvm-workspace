@@ -1,2 +1,17 @@
 /target
 /Cargo.lock
+
+# Local checkout symlinks → /mnt/data/bitcoin/blvm/<name> (never commit)
+/blvm
+/blvm-bench
+/blvm-commons
+/blvm-consensus
+/blvm-miniscript
+/blvm-muhash
+/blvm-node
+/blvm-primitives
+/blvm-protocol
+/blvm-sdk
+/blvm-secp256k1
+/blvm-spec
+/blvm-spec-lock
