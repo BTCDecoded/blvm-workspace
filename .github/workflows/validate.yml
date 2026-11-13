@@ -8,7 +8,7 @@ on:
 
 jobs:
   manifest-and-scripts:
-    runs-on: [self-hosted, Linux, X64, builds]
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
